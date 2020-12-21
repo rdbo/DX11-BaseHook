@@ -1,0 +1,1 @@
+Assets such as fonts and images should go here. You can delete this file.
