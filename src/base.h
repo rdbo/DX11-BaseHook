@@ -2,19 +2,20 @@
 #ifndef BASE_H
 #define BASE_H
 
+#include "pch.h"
+
 #if defined(MEM_86)
 #define WNDPROC_INDEX GWL_WNDPROC
+#define PRESENT_CALL __stdcall
 #elif defined(MEM_64)
 #define WNDPROC_INDEX GWLP_WNDPROC
+#define PRESENT_CALL __fastcall
 #endif
-
 #define D3D11DEV_LEN 40
 #define D3D11SC_LEN  18
 #define D3D11CTX_LEN 108
 
-#include "pch.h"
-
-typedef HRESULT(__fastcall* Present_t)(IDXGISwapChain*, UINT, UINT);
+typedef HRESULT(PRESENT_CALL* Present_t)(IDXGISwapChain*, UINT, UINT);
 typedef LRESULT(CALLBACK*  WndProc_t) (HWND, UINT, WPARAM, LPARAM);
 
 DWORD WINAPI MainThread(LPVOID lpThreadParameter);
@@ -57,7 +58,7 @@ namespace Base
 	{
 		bool Init();
 		bool Shutdown();
-		HRESULT __fastcall Present(IDXGISwapChain* thisptr, UINT SyncInterval, UINT Flags);
+		HRESULT PRESENT_CALL Present(IDXGISwapChain* thisptr, UINT SyncInterval, UINT Flags);
 		LRESULT CALLBACK  WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 	}
 }

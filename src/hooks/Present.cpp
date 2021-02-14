@@ -1,7 +1,7 @@
 #include <pch.h>
 #include <base.h>
 
-HRESULT __fastcall Base::Hooks::Present(IDXGISwapChain* thisptr, UINT SyncInterval, UINT Flags)
+HRESULT PRESENT_CALL Base::Hooks::Present(IDXGISwapChain* thisptr, UINT SyncInterval, UINT Flags)
 {
 	if (!Data::InitImGui)
 	{
